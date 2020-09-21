@@ -7,9 +7,9 @@
                 <%= f.label :Busqueda_por_titulo_o_por_Autor %>
                 <%= f.search_field :title_or_description_or_author_cont, class: "formcontrol", placeholder: "Buscar por titulo" %>
             </div>
-
+            <%= link_to 'Volver a pagina principal', root_path %>
             <div class="form-group">
-                <%= f.label :status_eq, "Status" %>
+                <%= f.label :status_eq, "Estado Actual del Libro" %>
                 <%= f.select :status_eq, options_for_select(Book.statuses ,
                 @q.status_eq), {},{class: "form-control"} %>
             </div>
