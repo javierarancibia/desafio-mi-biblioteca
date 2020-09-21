@@ -10,9 +10,9 @@ class BooksController < ApplicationController
     end
 
     def create
-        @post = Post.new(post_params)
-        if @post.save
-            redirect_to posts_path, notice: '¡El libro fue creado con exito!'
+        @book = Book.new(book_params)
+        if @book.save
+            redirect_to books_path, notice: '¡El libro fue creado con exito!'
         else
             flash.now[:alert] = 'Lamentablemente el libro no pudo ser creado'
             render :new
@@ -22,16 +22,21 @@ class BooksController < ApplicationController
     def edit; end
 
     def update
-        if @post.update(post_params)
-            redirect_to posts_path, notice: 'Post was successfully updated.'
+        if @book.update(book_params)
+            redirect_to books_path, notice: 'El libro fue actualizado con exito'
         else
-            flash.now[:alert] = 'Post cannot be created.'
+            flash.now[:alert] = 'El libro no puede ser actualizado'
             render :edit
         end
     end
 
+    def destroy
+        @book.destroy
+            redirect_to books_url, notice: 'El libro fue borrado con exito'
+    end
+
     private
-    def set_book
+    def set_post
         @book = Book.find(params[:id])
     end
 
