@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="jumbotron">
+            <h1 class="display-4">Libreria Personal de Javier</h1>
+            <hr class="my-4">
+            <p>Estanteria digital de todos mis libros</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <% @posts.each do |post| %>
+            <div class="row">
+                <div class="col-md-12"><h3><%= post.title%></h3></div>
+                <div class="col-md-12 small">
+                    <span><strong>Created by:</strong> <span class="font-weight-light">
+<%= post.author %></span></span>
+                    <span><strong>on </strong> <span class="font-weight-light"><%=
+post.created_at %></span></span>
+                </div>
+                <div class="col-md-12"><p><%= post.description%></p></div>
+            </div>
+        <% end %>
+    </div>
+</div>
