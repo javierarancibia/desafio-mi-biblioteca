@@ -1,0 +1,47 @@
+<%= form_with(model: book, local: true) do |form| %>
+    <% if book.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(book.errors.count, "error") %> on saving book:</h2>
+
+            <ul>
+                <% book.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title, id: :book_title %>
+    </div>
+
+    <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :descripion, id: :book_description, size: '30x10' %>
+    </div>
+
+    <div class="field">
+        <%= form.label :author %>
+        <%= form.text_field :author, id: :book_author %>
+    </div>
+
+    <div class="field">
+        <%= form.label :status %>
+        <%= form.select :status, Book.statuses.keys %>
+    </div>
+
+    <div class="field">
+        <%= form.label :date_back %>
+        <%= form.text_field :date_back, id: :book_date_back %>
+    </div>
+
+    <div class="field">
+        <%= form.label :date_out %>
+        <%= form.text_field :date_out, id: :book_date_out %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit %>
+    </div>
+<% end %>
