@@ -1,34 +1,61 @@
 <p id="notice"><%= notice %></p>
-<h1>Biblioteca Personal</h1>
-<%= link_to 'Agrega un libro', new_book_path %>
 
-<br>
-<table>
-    <thead>
-        <tr>
-            <th>Titulo</th>
-            <th>Descripcion</th>
-            <th>Autor</th>
-            <th>Estado</th>
-            <th>Fecha de Prestamos</th>
-            <th>Fecha de Entrega</th>
-            <th colspan="3"></th>
-        </tr>
-    </thead>
+<div class="row">
+    <div class="col-md-3 offset-md-2">
+        <%= search_form_for @q do |f| %>
+            <div class="form-group">
+                <%= f.label :Busqueda_por_titulo_o_por_Autor %>
+                <%= f.search_field :title_or_description_or_author_cont, class: "formcontrol", placeholder: "Buscar por titulo" %>
+            </div>
 
-    <tbody>
-    <% @books.each do |book| %>
-        <tr>
-            <td><%= book.title %></td>
-            <td><%= book.description %></td>
-            <td><%= book.author %></td>
-            <td><%= book.status %></td>
-            <td><%= book.date_out %></td>
-            <td><%= book.date_back %></td>
-            <td><%= link_to 'Show', book %></td>
-            <td><%= link_to 'Edit', edit_book_path(book) %></td>
-            <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
-        </tr>
+            <div class="form-group">
+                <%= f.label :status_eq, "Status" %>
+                <%= f.select :status_eq, options_for_select(Book.statuses ,
+                @q.status_eq), {},{class: "form-control"} %>
+            </div>
+
+            <%= f.submit "Buscar", class: "btn btn-primary" %>
         <% end %>
-    </tbody>
-</table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table class="table">
+            <thead>
+                <tr>
+                <th><%= sort_link(@q, :titulo) %></th>
+                <th>Descripcion</th>
+                <th>Autor</th>
+                <th>Estado actual del libro</th>
+                <th>Fecha de Prestamo</th>
+                <th>Fecha de Regreso</th>
+                <th colspan="3"></th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                <% @books.each do |book| %>
+                    <tr>
+                        <td><%= book.title %></td>
+                        <td><%= book.description %></td>
+                        <td><%= book.author %></td>
+                        <td><%= book.status %></td>
+                        <td><%= book.date_out %></td>
+                        <td><%= book.date_back %></td>
+                        <td><%= link_to 'Editar el Libro', edit_book_path(book) %></td>
+                        <td><%= link_to 'Borrar el libro', book, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <%= link_to 'Nuevo Libro', new_book_path %>
+    </div>
+</div>

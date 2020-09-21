@@ -4,22 +4,25 @@
             <h1 class="display-4">Libreria Personal de Javier</h1>
             <hr class="my-4">
             <p>Estanteria digital de todos mis libros</p>
+            <%= link_to 'Entrar a la edicion Libros', books_path %>
         </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-8 offset-md-2">
-        <% @posts.each do |post| %>
+        <% @books.each do |book| %>
             <div class="row">
-                <div class="col-md-12"><h3><%= post.title%></h3></div>
+                <div class="col-md-12"><h3><%= book.title%></h3></div>
                 <div class="col-md-12 small">
-                    <span><strong>Created by:</strong> <span class="font-weight-light">
-<%= post.author %></span></span>
-                    <span><strong>on </strong> <span class="font-weight-light"><%=
-post.created_at %></span></span>
+                    <span><strong>Autor del libro:</strong> <span class="font-weight-light">
+<%= book.author %></span></span> <br>
+                    <span><strong>Fecha de Prestamo</strong> <span class="font-weight-light"><%=
+book.date_out %></span></span> <br>
+                    <span><strong>Fecha de Retorno</strong> <span class="font-weight-light"><%=
+book.date_back %></span></span> <br>
                 </div>
-                <div class="col-md-12"><p><%= post.description%></p></div>
+                <div class="col-md-12"><p><%= book.description%></p></div>
             </div>
         <% end %>
     </div>

@@ -12,32 +12,32 @@
     <% end %>
 
     <div class="field">
-        <%= form.label :title %>
+        <%= form.label :titulo %>
         <%= form.text_field :title, id: :book_title %>
     </div>
 
     <div class="field">
-        <%= form.label :description %>
+        <%= form.label :descripcion %>
         <%= form.text_area :description, id: :book_description, size: '30x10' %>
     </div>
 
     <div class="field">
-        <%= form.label :author %>
+        <%= form.label :autor %>
         <%= form.text_field :author, id: :book_author %>
     </div>
 
     <div class="field">
-        <%= form.label :status %>
+        <%= form.label :estado %>
         <%= form.select :status, Book.statuses.keys %>
     </div>
 
     <div class="field">
-        <%= form.label :date_back %>
+        <%= form.label :fecha_de_regreso %>
         <%= form.text_field :date_back, id: :book_date_back %>
     </div>
 
     <div class="field">
-        <%= form.label :date_out %>
+        <%= form.label :fecha_de_prestamo %>
         <%= form.text_field :date_out, id: :book_date_out %>
     </div>
 

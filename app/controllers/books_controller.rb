@@ -2,13 +2,18 @@ class BooksController < ApplicationController
     before_action :set_post, only: [:show, :edit, :update, :destroy]
 
     def index
-        @books = Book.all
+        @q = Book.ransack(params[:q])
+        @books = @q.result(distinct: true)
     end
 
     def new
         @book = Book.new 
     end
 
+    def show
+
+    end
+    
     def create
         @book = Book.new(book_params)
         if @book.save

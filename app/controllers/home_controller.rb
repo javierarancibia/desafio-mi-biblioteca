@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
     def index
-        @books = Books.published
+        @books = Book.out
         end
     end
